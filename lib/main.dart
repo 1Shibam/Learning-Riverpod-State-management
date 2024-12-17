@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import 'package:hehehehhee/screens/welcome_pageview.dart';
+import 'package:hehehehhee/screens/new_screen.dart';
 
 void main() => runApp(const ProviderScope(child: MyApp()));
 
@@ -13,7 +12,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(),
-      home: const WelcomePageView(),
+      home: const NewScreen(),
     );
   }
 }
