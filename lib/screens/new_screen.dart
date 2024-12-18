@@ -44,6 +44,7 @@ class _NewScreenState extends ConsumerState<NewScreen> {
   @override
   Widget build(BuildContext context) {
     final user = ref.watch(newUserProvider);
+    // final userSelection = ref.watch(newUserProvider.select((selector) => selector.name));
     final nameController = ref.watch(textEditingControllerProvider);
 
     return Scaffold(

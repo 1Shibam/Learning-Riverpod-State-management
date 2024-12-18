@@ -64,7 +64,9 @@ class NormalUser {
 }
 
 class NormalUserNotifier extends StateNotifier<NormalUser> {
-  NormalUserNotifier(super.state);
+  NormalUserNotifier(super.state) {
+    updateAge(16);
+  }
   void updateName(String newName) {
     //this is fine but will be a length process if the data is bit like
     //there are more class members this will get pretty messy just to change
