@@ -38,7 +38,7 @@ class NewScreen extends ConsumerWidget {
                     border: OutlineInputBorder()),
               ),
               const SizedBox(
-                height: 20,
+                height: 20 ,
               )
             ],
           ),
