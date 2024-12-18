@@ -14,8 +14,31 @@ class NewScreen extends ConsumerStatefulWidget {
 }
 
 class _NewScreenState extends ConsumerState<NewScreen> {
-  void onSubmit(WidgetRef ref, String value) {
+  void changeName(WidgetRef ref, String value) {
     ref.read(newUserProvider.notifier).updateName(value);
+  }
+
+  void changeAge(WidgetRef ref, String value) {
+    ref.read(newUserProvider.notifier).updateAge(value as int);
+  }
+
+  void changeSalary(WidgetRef ref, String value) {
+    ref.read(newUserProvider.notifier).updateName(value);
+  }
+
+  final TextEditingController ageController = TextEditingController();
+  final TextEditingController salaryController = TextEditingController();
+  final FocusNode firstFocusNode = FocusNode();
+  final FocusNode secondFocusNode = FocusNode();
+  final FocusNode thirdFocusNode = FocusNode();
+  @override
+  void dispose() {
+    super.dispose();
+    ageController.dispose();
+    salaryController.dispose();
+    firstFocusNode.dispose();
+    secondFocusNode.dispose();
+    thirdFocusNode.dispose();
   }
 
   @override
@@ -34,14 +57,17 @@ class _NewScreenState extends ConsumerState<NewScreen> {
               Text('Age: ${user.age}'),
               Text('Salary: ${user.salary}'),
               TextField(
+                focusNode: firstFocusNode,
                 controller: nameController,
                 onSubmitted: (value) {
-                  onSubmit(ref, value);
+                  changeName(ref, value);
+                  FocusScope.of(context).requestFocus(secondFocusNode);
                 },
                 decoration: InputDecoration(
                     suffixIcon: IconButton(
                         onPressed: () {
-                          onSubmit(ref, nameController.text);
+                          changeName(ref, nameController.text);
+                          FocusScope.of(context).requestFocus(secondFocusNode);
                         },
                         icon: const Icon(Icons.arrow_forward_ios)),
                     label: const Text('Change name here'),
@@ -51,23 +77,37 @@ class _NewScreenState extends ConsumerState<NewScreen> {
                 height: 20,
               ),
               TextField(
+                focusNode: secondFocusNode,
                 onSubmitted: (value) {
-                  onSubmit(ref, value);
+                  changeAge(ref, value);
+                  FocusScope.of(context).requestFocus(thirdFocusNode);
                 },
-                decoration: const InputDecoration(
-                    label: Text('Change name here'),
-                    border: OutlineInputBorder()),
+                decoration: InputDecoration(
+                    suffixIcon: IconButton(
+                        onPressed: () {
+                          changeName(ref, nameController.text);
+                          FocusScope.of(context).requestFocus(thirdFocusNode);
+                        },
+                        icon: const Icon(Icons.arrow_forward_ios)),
+                    label: const Text('Change name here'),
+                    border: const OutlineInputBorder()),
               ),
               const SizedBox(
                 height: 20,
               ),
               TextField(
+                focusNode: thirdFocusNode,
                 onSubmitted: (value) {
-                  onSubmit(ref, value);
+                  changeSalary(ref, value);
                 },
-                decoration: const InputDecoration(
-                    label: Text('Change name here'),
-                    border: OutlineInputBorder()),
+                decoration: InputDecoration(
+                    suffixIcon: IconButton(
+                        onPressed: () {
+                          changeName(ref, nameController.text);
+                        },
+                        icon: const Icon(Icons.arrow_forward_ios)),
+                    label: const Text('Change name here'),
+                    border: const OutlineInputBorder()),
               ),
               const SizedBox(
                 height: 20,

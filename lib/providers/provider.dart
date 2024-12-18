@@ -8,4 +8,4 @@ final textEditingControllerProvider =
 final newUserProvider =
     StateNotifierProvider<NormalUserNotifierProvider, NormalUser>((ref) =>
         NormalUserNotifierProvider(
-            const NormalUser(name: 'Enter Your Name', age: 0, salary: 0)));
+            const NormalUser(name: '', age: 0, salary: 0)));
