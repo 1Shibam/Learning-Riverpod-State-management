@@ -19,11 +19,11 @@ class _NewScreenState extends ConsumerState<NewScreen> {
   }
 
   void changeAge(WidgetRef ref, String value) {
-    ref.read(newUserProvider.notifier).updateAge(value as int);
+    ref.read(newUserProvider.notifier).updateAge(int.parse(value));
   }
 
   void changeSalary(WidgetRef ref, String value) {
-    ref.read(newUserProvider.notifier).updateName(value);
+    ref.read(newUserProvider.notifier).updateSalary(double.parse(value));
   }
 
   final TextEditingController ageController = TextEditingController();
@@ -77,6 +77,8 @@ class _NewScreenState extends ConsumerState<NewScreen> {
                 height: 20,
               ),
               TextField(
+                controller: ageController,
+                keyboardType: TextInputType.number,
                 focusNode: secondFocusNode,
                 onSubmitted: (value) {
                   changeAge(ref, value);
@@ -85,7 +87,7 @@ class _NewScreenState extends ConsumerState<NewScreen> {
                 decoration: InputDecoration(
                     suffixIcon: IconButton(
                         onPressed: () {
-                          changeName(ref, nameController.text);
+                          changeAge(ref, ageController.text.toString());
                           FocusScope.of(context).requestFocus(thirdFocusNode);
                         },
                         icon: const Icon(Icons.arrow_forward_ios)),
@@ -96,6 +98,8 @@ class _NewScreenState extends ConsumerState<NewScreen> {
                 height: 20,
               ),
               TextField(
+                keyboardType: TextInputType.number,
+                controller: salaryController,
                 focusNode: thirdFocusNode,
                 onSubmitted: (value) {
                   changeSalary(ref, value);
@@ -103,7 +107,7 @@ class _NewScreenState extends ConsumerState<NewScreen> {
                 decoration: InputDecoration(
                     suffixIcon: IconButton(
                         onPressed: () {
-                          changeName(ref, nameController.text);
+                          changeSalary(ref, nameController.text.toString());
                         },
                         icon: const Icon(Icons.arrow_forward_ios)),
                     label: const Text('Change name here'),

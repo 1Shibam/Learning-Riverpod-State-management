@@ -63,8 +63,8 @@ class NormalUser {
   int get hashCode => name.hashCode ^ age.hashCode ^ salary.hashCode;
 }
 
-class NormalUserNotifierProvider extends StateNotifier<NormalUser> {
-  NormalUserNotifierProvider(super.state);
+class NormalUserNotifier extends StateNotifier<NormalUser> {
+  NormalUserNotifier(super.state);
   void updateName(String newName) {
     //this is fine but will be a length process if the data is bit like
     //there are more class members this will get pretty messy just to change
