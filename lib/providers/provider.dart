@@ -5,7 +5,5 @@ import 'package:hehehehhee/models/normal_user.dart';
 final textEditingControllerProvider =
     StateProvider((ref) => TextEditingController());
 
-final newUserProvider =
-    StateNotifierProvider<NormalUserNotifier, NormalUser>((ref) =>
-        NormalUserNotifier(
-            const NormalUser(name: '', age: 0, salary: 0)));
+final newUserProvider = StateNotifierProvider<NormalUserNotifier, NormalUser>(
+    (ref) => NormalUserNotifier(const NormalUser(name: '', age: 0, salary: 0)));
