@@ -5,9 +5,9 @@ import 'package:hehehehhee/models/user_data_model.dart';
 import 'package:http/http.dart' as http;
 
 class HttpCall {
-  Future<UserDataModel> fetchUserData() async {
+  Future<UserDataModel> fetchUserData(String input) async {
     final response = await http
-        .get(Uri.parse('https://jsonplaceholder.typicode.com/users/2'));
+        .get(Uri.parse('https://jsonplaceholder.typicode.com/users/$input'));
 
     if (response.statusCode == 200) {
       final Map<String, dynamic> jsonData = json.decode(response.body);
