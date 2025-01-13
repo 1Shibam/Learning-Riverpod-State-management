@@ -1,4 +1,3 @@
-
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class Todo {
@@ -16,7 +15,7 @@ class TodosNotifier extends Notifier<List<Todo>> {
   void addTodo(Todo todo) {
     state = [...state, todo];
   }
-  // TODO add other methods, such as "removeTodo", ...
+  //
 }
 
 final todosProvider = NotifierProvider<TodosNotifier, List<Todo>>(() {
