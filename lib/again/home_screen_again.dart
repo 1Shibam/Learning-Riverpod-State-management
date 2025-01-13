@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hehehehhee/again/state_provider.dart';
 
 final greetProvider = StateProvider((ref) => 'hello bitch');
-final sliderProvider = StateProvider<double>((ref) {
-  return 0.00;
-});
 
 class HomeScreenAgain extends StatelessWidget {
   const HomeScreenAgain({super.key});
@@ -55,15 +53,18 @@ class HomeScreenAgain extends StatelessWidget {
                         height: 300,
                         width: 300,
                         decoration: BoxDecoration(
-                            color: Colors.blue.withOpacity(slide),
+                            color: Colors.blue.withOpacity(slide.slider),
                             borderRadius: BorderRadius.circular(20)),
                       ),
                       Slider(
                         min: 0.0, // set the minimum value
                         max: 1.0,
-                        value: slide,
+                        value: slide.slider,
                         onChanged: (slideValue) {
-                          ref.read(sliderProvider.notifier).state = slideValue;
+                          final sliderStateProvider =
+                              ref.read(sliderProvider.notifier);
+                          sliderStateProvider.state = sliderStateProvider.state
+                              .copyWith(slider: slideValue);
                         },
                       )
                     ],
