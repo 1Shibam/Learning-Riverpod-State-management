@@ -21,7 +21,8 @@ class SearchScreen extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: TextField(
-                      obscureText: search.isVisible, // Ensure default value if null
+                      obscureText:
+                          search.isVisible, // Ensure default value if null
                       onChanged: (value) {
                         ref.read(searchProvider.notifier).search(value);
                       },
@@ -33,7 +34,9 @@ class SearchScreen extends StatelessWidget {
                         suffixIcon: IconButton(
                           onPressed: () {
                             // Toggle visibility when icon is pressed
-                            ref.read(searchProvider.notifier).toggleVisibility();
+                            ref
+                                .read(searchProvider.notifier)
+                                .toggleVisibility();
                           },
                           icon: Icon(
                             search.isVisible == true
