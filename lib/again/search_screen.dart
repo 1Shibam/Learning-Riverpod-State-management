@@ -10,32 +10,34 @@ class SearchScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     print('i am uselessly rebuilding');
-    return Scaffold(
-      body: Center(
-        child: Consumer(
-          builder: (context, ref, child) {
-            final search = ref.watch(searchProvider);
-            print('only i should be rebuild');
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: TextField(
-                    onChanged: (value) {
-                      ref.read(searchProvider.notifier).search(value);
-                    },
-                    onSubmitted: (value) {
-                      showCustomDialog(context, value);
-                    },
-                    decoration:
-                        const InputDecoration(border: OutlineInputBorder()),
+    return SafeArea(
+      child: Scaffold(
+        body: Center(
+          child: Consumer(
+            builder: (context, ref, child) {
+              final search = ref.watch(searchProvider);
+              print('only i should be rebuild');
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: TextField(
+                      onChanged: (value) {
+                        ref.read(searchProvider.notifier).search(value);
+                      },
+                      onSubmitted: (value) {
+                        showCustomDialog(context, value);
+                      },
+                      decoration:
+                          const InputDecoration(border: OutlineInputBorder()),
+                    ),
                   ),
-                ),
-                Text(search.paragraph),
-              ],
-            );
-          },
+                  Text(search.paragraph),
+                ],
+              );
+            },
+          ),
         ),
       ),
     );

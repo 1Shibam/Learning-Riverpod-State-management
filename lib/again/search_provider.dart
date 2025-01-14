@@ -5,7 +5,7 @@ final searchProvider = StateNotifierProvider<SearchNotifier, SearchState>((ref) 
 });
 
 class SearchNotifier extends StateNotifier<SearchState> {
-  SearchNotifier() : super(SearchState(paragraph: 'I desire to lick a marvelous Pussy, i mean a Cat, cute one!!'));
+  SearchNotifier() : super(SearchState(paragraph: 'Human desires have no bounds!!'));
 
   void search(String text) {
     state = state.copyWith(newParagraph: text);
