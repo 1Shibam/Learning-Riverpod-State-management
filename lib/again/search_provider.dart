@@ -1,23 +1,31 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final searchProvider = StateNotifierProvider<SearchNotifier, SearchState>((ref) {
+final searchProvider =
+    StateNotifierProvider<SearchNotifier, SearchState>((ref) {
   return SearchNotifier();
 });
 
 class SearchNotifier extends StateNotifier<SearchState> {
-  SearchNotifier() : super(SearchState(paragraph: 'Human desires have no bounds!!'));
+  SearchNotifier()
+      : super(const SearchState(paragraph: '', isVisible: true));
 
   void search(String text) {
     state = state.copyWith(newParagraph: text);
   }
+  void toggleVisibility() {
+    // Toggle the isVisible value between true and false.
+    state = state.copyWith(setVisibility: !(state.isVisible ?? true)); // Default to true if null
+  }
 }
-
+@immutable
 class SearchState {
   final String paragraph;
-  SearchState({required this.paragraph});
+  final bool? isVisible;
+  const SearchState({required this.paragraph, this.isVisible});
 
   //copyWith Method
-  SearchState copyWith({String? newParagraph}) {
-    return SearchState(paragraph: newParagraph ?? paragraph);
+  SearchState copyWith({String? newParagraph, bool? setVisibility}) {
+    return SearchState(paragraph: newParagraph ?? paragraph, isVisible: setVisibility ?? isVisible);
   }
 }
