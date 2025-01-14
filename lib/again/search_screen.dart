@@ -9,28 +9,39 @@ class SearchScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('i am uselessly rebuilding');
     return SafeArea(
       child: Scaffold(
         body: Center(
           child: Consumer(
             builder: (context, ref, child) {
               final search = ref.watch(searchProvider);
-              print('only i should be rebuild');
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: TextField(
+                      obscureText: search.isVisible!, // Ensure default value if null
                       onChanged: (value) {
                         ref.read(searchProvider.notifier).search(value);
                       },
                       onSubmitted: (value) {
                         showCustomDialog(context, value);
                       },
-                      decoration:
-                          const InputDecoration(border: OutlineInputBorder()),
+                      decoration: InputDecoration(
+                        border: const OutlineInputBorder(),
+                        suffixIcon: IconButton(
+                          onPressed: () {
+                            // Toggle visibility when icon is pressed
+                            ref.read(searchProvider.notifier).toggleVisibility();
+                          },
+                          icon: Icon(
+                            search.isVisible == true
+                                ? Icons.visibility_off
+                                : Icons.visibility,
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                   Text(search.paragraph),
@@ -48,13 +59,13 @@ class SearchScreen extends StatelessWidget {
 void showCustomDialog(BuildContext context, String text) {
   showDialog(
     barrierDismissible: false,
-    
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
-        
         actions: [
-          TextButton(onPressed: ()=> Navigator.of(context).pop(), child: const Text('Okay'))
+          TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('Okay'))
         ],
         alignment: Alignment.center,
         title: const Text('Your final data'),
