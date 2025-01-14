@@ -21,7 +21,7 @@ class SearchScreen extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: TextField(
-                      obscureText: search.isVisible!, // Ensure default value if null
+                      obscureText: search.isVisible, // Ensure default value if null
                       onChanged: (value) {
                         ref.read(searchProvider.notifier).search(value);
                       },

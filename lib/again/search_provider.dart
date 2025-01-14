@@ -15,14 +15,14 @@ class SearchNotifier extends StateNotifier<SearchState> {
   }
   void toggleVisibility() {
     // Toggle the isVisible value between true and false.
-    state = state.copyWith(setVisibility: !(state.isVisible ?? true)); // Default to true if null
+    state = state.copyWith(setVisibility: !state.isVisible); 
   }
 }
 @immutable
 class SearchState {
   final String paragraph;
-  final bool? isVisible;
-  const SearchState({required this.paragraph, this.isVisible});
+  final bool isVisible;
+  const SearchState({required this.paragraph, this.isVisible = true});
 
   //copyWith Method
   SearchState copyWith({String? newParagraph, bool? setVisibility}) {
