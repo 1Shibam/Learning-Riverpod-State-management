@@ -23,6 +23,9 @@ class SearchScreen extends StatelessWidget {
                     onChanged: (value) {
                       ref.read(searchProvider.notifier).search(value);
                     },
+                    onSubmitted: (value) {
+                      showCustomDialog(context, value);
+                    },
                     decoration:
                         const InputDecoration(border: OutlineInputBorder()),
                   ),
@@ -35,4 +38,24 @@ class SearchScreen extends StatelessWidget {
       ),
     );
   }
+}
+
+// Reusable dialog method
+void showCustomDialog(BuildContext context, String text) {
+  showDialog(
+    barrierDismissible: false,
+    
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        
+        actions: [
+          TextButton(onPressed: ()=> Navigator.of(context).pop(), child: const Text('Okay'))
+        ],
+        alignment: Alignment.center,
+        title: const Text('Your final data'),
+        content: Text(text),
+      );
+    },
+  );
 }
