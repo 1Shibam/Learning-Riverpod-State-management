@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hehehehhee/again/search_provider.dart';
@@ -30,7 +32,7 @@ class SearchScreen extends StatelessWidget {
                         const InputDecoration(border: OutlineInputBorder()),
                   ),
                 ),
-                Text(search),
+                Text(search.paragraph),
               ],
             );
           },
