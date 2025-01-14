@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hehehehhee/again/home_screen_again.dart';
+import 'package:hehehehhee/again/search_screen.dart';
 import 'package:hehehehhee/screens/new_screen.dart';
 import 'package:hehehehhee/screens/understanding_future_provider.dart';
 
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(),
-      home: const HomeScreenAgain(),
+      home: const SearchScreen(),
     );
   }
 }

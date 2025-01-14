@@ -1,11 +1,13 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final searchProvider = StateNotifierProvider<SearchNotifier, List<int> >((ref) {
+final searchProvider = StateNotifierProvider<SearchNotifier, String>((ref) {
   return SearchNotifier();
 });
 
-class SearchNotifier extends StateNotifier<List<int>>{
-  SearchNotifier(): super([12,15,18]);
+class SearchNotifier extends StateNotifier<String> {
+  SearchNotifier() : super('choot');
 
-
+  void search(String text) {
+    state = text;
+  }
 }
